@@ -370,5 +370,144 @@ CSS3的 `box-sizing` 属性在一个元素的 width 和 height 中包含 padding
 
 #### 12. flex-弹性盒子
 
-弹性盒子由**弹性容器**(Flex container)和**弹性子元素**(Flex item)组成，弹性容器通过**设置 display 属性的值**为 flex 或 inline-flex将其定义为弹性容器
+弹性盒子由**弹性容器**(Flex container)和**弹性子元素**(Flex item)组成，弹性容器通过**设置 display 属性的值**为 flex 或 inline-flex将其定义为弹性容器，弹性盒子只定义了弹性子元素在盒子内的布局
+
+direction属性：设置排列方式  属性值：rtl（right to left）**这不是flex属性**
+
+#### 12.1 flex-direction
+
+设置弹性子元素在容器的排列方式(从上到下还是从左到右)，应用在容器上
+
+~~~
+flex-direction: row | row-reverse | column | column-reverse
+~~~
+
+#### 12.2 justify-content
+
+设置弹性子元素在横轴的对齐方式(控制的是x方向的间隔)，如间隔等，应用在容器上
+
+- **lex-start：**弹性项目向行头紧挨着填充。默认值
+
+- **flex-end：**弹性项目向行尾紧挨着填充。
+- **center：**弹性项目居中紧挨着填充。空余空间在两边
+- **space-between：**弹性项目平均分布在该行上。如果剩余空间为负或者只有一个弹性项，则该值等同于flex-start。多余空间分布在弹性子元素之间，第一个与左边对齐，最后一个与右边对齐
+- **space-around：**弹性项目平均分布在该行上，两边留有一半的间隔空间。
+
+~~~
+justify-content: flex-start | flex-end | center | space-between | space-around
+~~~
+
+![img](https://www.runoob.com/wp-content/uploads/2016/04/2259AD60-BD56-4865-8E35-472CEABF88B2.jpg)
+
+#### 12.3 align-items
+
+设置弹性子元素在纵轴上的排列（设置的是纵轴方向的间隔），设置在容器
+
+~~~
+align-items: flex-start | flex-end | center | baseline | stretch
+~~~
+
+- **flex-start**：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+- **flex-end**：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。
+- **center**：弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会		向两个方向溢出相同的长度）。
+- **baseline**：如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线		对齐。
+- **stretch**：默认值。如果未设置子元素高度。如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的		尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制。
+
+#### 12.4 flex-wrap
+
+用于指定弹性盒子的子元素换行方式，设置在容器。
+
+```
+flex-wrap: nowrap|wrap|wrap-reverse|initial|inherit;
+```
+
+- **nowrap** - 默认， 弹性容器为单行。该情况下弹性子项可能会溢出容器。
+- **wrap** - 弹性容器为多行。该情况下弹性子项溢出的部分会被放置到新行，子项内部会发生断行
+- **wrap-reverse** -反转 wrap 排列。
+
+#### 12.5 align-content
+
+用于修改 `flex-wrap` 属性的行为，设置在容器。类似于 `align-items`, 但它不是设置弹性子元素的对齐，而是设置各个行的对齐。
+
+~~~
+align-content: flex-start | flex-end | center | space-between | space-around | stretch
+~~~
+
+- `stretch` - 默认。各行将会伸展以占用剩余的空间。
+- `flex-start` - 各行向弹性盒容器的起始位置堆叠。
+- `flex-end` - 各行向弹性盒容器的结束位置堆叠。
+- `center` -各行向弹性盒容器的中间位置堆叠。
+- `space-between` -各行在弹性盒容器中平均分布。
+- `space-around` - 各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。
+
+#### 12.6 弹性子元素属性
+
+- order：用整数值来定义排列顺序，数值小的排在前面。可以为负值。
+
+~~~
+order：数值  
+~~~
+
+- align-self：用于设置弹性元素自身在侧轴（纵轴）方向上的对齐方式。不同于上面的是这是控制单个
+
+~~~
+align-self: auto | flex-start | flex-end | center | baseline | stretch
+~~~
+
+- flex：用于指定弹性子元素如何分配空间。直接设置数值，根据数值分配占有空间
+
+### 13. 媒体查询
+
+媒体查询：针对不同的媒体类型，设置不同的样式规则
+
+属性：@media
+
+~~~
+@media not|only mediatype and (expressions) {
+    CSS 代码...;
+}
+~~~
+
+#### 1. 第一个参数
+
+**设置设备的类型**
+
+- **not:** not是用来排除掉某些特定的设备的，比如 @media not print（非打印设备）。
+- **only:** 用来定某种特别的媒体类型。对于支持Media Queries的移动设备来说，如果存在only关键字，移动设备的Web浏览器会忽略only关键字并直接根据后面的表达式应用样式文件。对于不支持Media Queries的设备但能够读取Media Type类型的Web浏览器，遇到only关键字时会忽略这个样式文件。
+- **all:** 所有设备，这个应该经常看到。
+
+#### 2. mediatype
+
+| 值     | 描述                             |
+| :----- | :------------------------------- |
+| all    | 用于所有多媒体类型设备           |
+| print  | 用于打印机                       |
+| screen | 用于电脑屏幕，平板，智能手机等。 |
+| speech | 用于屏幕阅读器                   |
+
+#### **实例**
+
+1. 设置屏幕大于480px时，背景颜色是亮绿色，小于时则为粉色
+
+~~~
+body {
+    background-color: pink;
+}
+@media screen and (min-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
+}
+~~~
+
+2. 改变样式，当屏幕小于699px大于520px时，是以下样式
+
+~~~
+@media screen and (max-width: 699px) and (min-width: 520px) {
+    ul li a {
+        padding-left: 30px;
+        background: url(email-icon.png) left center no-repeat;
+    }
+}
+~~~
 
