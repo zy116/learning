@@ -5,3 +5,4 @@
 1. git学习
 2. HTML补充及H5
 3. CSS补充及CSS3
+4. JavaScript补充及ES6
